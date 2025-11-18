@@ -1,14 +1,7 @@
-const postData = () => {
-  return fetch('https://localhost:3000/goods' , {
+const postData = (cart) => {
+  return fetch('https://jsonplaceholder.typicode.com/posts' , {
     method: 'POST',
-    body: JSON.stringify({
-		id: 23,
-		title: "Игра Onrush (PS4 Sony)",
-		price: 1794,
-		sale: true,
-		img: "https://cdn1.ozone.ru/multimedia/c400/1023547851.jpg",
-		category: "Игры и софт"
-	}),
+    body: JSON.stringify(cart),
     headers: {
       'Content-type': 'application/json; chrset=UTF-8',
     }

@@ -1,13 +1,20 @@
-const renderGoods = (goods) => {
-  const goodsWrapper = document.querySelector('.goods')
-  localStorage.setItem('goods', JSON.stringify(goods))
-  goodsWrapper.innerHTML = ''
+const renderCart = goods => {
+  const cartWrapper = document.querySelector('.cart-wrapper')
 
-  goods.forEach((goodsItem) => {
-    goodsWrapper.insertAdjacentHTML(
+  goodsWrapper.innerHTML = ''
+  if (goods.length === 0) {
+    cartWrapper.insertAdjacentHTML(
       'beforeend',
       `
-        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+      <div id="cart-empty">
+					Ваша корзина пока пуста
+				</div>`,
+    )
+  } else {
+    goods.forEach(goodsItem => {
+      goodsWrapper.insertAdjacentHTML(
+        'beforeend',
+        `
 								<div class="card" data-key="${goodsItem.id}">
 									<div class="card-img-wrapper">
                   ${goodsItem.sale ? '<div class="card-sale">🔥Hot Sale🔥</div>' : ''}
@@ -17,12 +24,12 @@ const renderGoods = (goods) => {
 									<div class="card-body justify-content-between">
 										<div class="card-price">${goodsItem.price} ₽</div>
 										<h5 class="card-title">${goodsItem.title}</h5>
-										<button class="btn btn-primary">В корзину</button>
+										<button class="btn btn-primary">Удалить</button>
 									</div>
-								</div>
-							</div>`,
-    )
-  })
+								</div>`,
+      )
+    })
+  }
 }
 
-export default renderGoods
+export default renderCart

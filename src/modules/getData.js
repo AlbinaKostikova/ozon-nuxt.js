@@ -1,7 +1,5 @@
 const getData = () => {
-  return fetch('https://localhost:3000/goods')
-    .then((response) => {
-      return response.json()
-    })
+  return fetch('http://localhost:3000/goods')
+  .then(res => res.json())
 }
 export default getData
